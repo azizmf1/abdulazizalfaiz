@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Abdulaziz M. Alfaiz</title>
+
+	<link href="site.css" rel="stylesheet">
+</head>
+
+<body >
+							<div class="header" >
+					
+				
+<h1  class="title">Abdulaziz M. Alfaiz</h1>						
+						<div  style="
+     background-color: #91c7d8;
+    padding: 20px;  margin-bottom: 30px;
+">
+	<a class="header_link" href="index.html" >Home</a>
+							 <a class="header_link" href="about.html" >About</a>
+							  <a class="header_link" href="cv.html" >CV</a>
+							   <a class="header_link" href="works.html" >Works</a>
+							    <a class="header_link" href="contact.html">Contact</a>
+										
+				
+			</div>
+			
+			
+						
+					
+								<h2 class="section_title">
+Contact</h2>
+				<div class="section" >
+					<table>
+						<tr>
+							<td>
+								Phone
+							</td>
+							<td>
+								+966555041212
+							</td>
+							</tr>
+							<tr>
+							<td>
+								Email
+							</td>
+							<td>
+								azizmalfaiz@gmail.com
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Location
+							</td>
+							<td>
+								Riyadh Saudi Arabia
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Nationality
+							</td>
+							<td>
+								Saudi
+							</td>
+						</tr>
+					</table>
+							<form action="" method="post" slot="width: 100%">
+								<div style="display: flex;">
+									<div style="width: 50%;">
+										<input class="input" id="name" placeholder="Name"  type="text">
+									</div>
+									<div style="width: 50%;">
+
+										<input class="input" id="email" placeholder="E-mail"  type="email">
+									</div><br>
+								</div>
+								<div >
+									<textarea class="input" id="message" name="message" placeholder="Message"  rows="3" ></textarea>
+								</div><br>
+								<button  onclick="send()" style="color: #fff; background-color: #32b1e0; border-color: #37BC9B; color: #fff; background-color: #37BC9B; margin: 0px 10px; border-color: #37BC9B; margin-top: 20px;" type="submit">Send</button>
+							</form>
+						</div>
+				
+	</div>
+	
+</body>
+</html>
+
+<script>
+	function send() {
+	  var name = document.getElementById("name").value;
+	  var email = document.getElementById("email").value;
+	  var message = document.getElementById("message").value;
+
+	  if (name === "" || email === "" || message === "") {
+		alert("Error .. Make sure to  fill  all input.");
+		
+	  } else {
+		alert("Succfully Sent Your message");
+	  
+	  }
+	}
+</script>
