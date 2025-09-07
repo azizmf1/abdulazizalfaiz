@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management System</title>
+    <link rel="stylesheet" href="appointment-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-calendar-check"></i> Appointment Management System</h1>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="facilities">
+                    <i class="fas fa-building"></i> Facilities
+                </button>
+                <button class="nav-tab" data-tab="providers">
+                    <i class="fas fa-user-md"></i> Providers
+                </button>
+                <button class="nav-tab" data-tab="slots">
+                    <i class="fas fa-clock"></i> Time Slots
+                </button>
+                <button class="nav-tab" data-tab="appointments">
+                    <i class="fas fa-calendar-alt"></i> Appointments
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Facilities Tab -->
+            <div id="facilities" class="tab-content active">
+                <div class="section-header">
+                    <h2>Facility Management</h2>
+                    <button class="btn btn-primary" onclick="openFacilityModal()">
+                        <i class="fas fa-plus"></i> Add Facility
+                    </button>
+                </div>
+                <div class="facilities-grid" id="facilitiesGrid">
+                    <!-- Facilities will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Providers Tab -->
+            <div id="providers" class="tab-content">
+                <div class="section-header">
+                    <h2>Provider Management</h2>
+                    <button class="btn btn-primary" onclick="openProviderModal()">
+                        <i class="fas fa-plus"></i> Add Provider
+                    </button>
+                </div>
+                <div class="providers-grid" id="providersGrid">
+                    <!-- Providers will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Time Slots Tab -->
+            <div id="slots" class="tab-content">
+                <div class="section-header">
+                    <h2>Time Slot Management</h2>
+                    <button class="btn btn-primary" onclick="openSlotModal()">
+                        <i class="fas fa-plus"></i> Create Time Slots
+                    </button>
+                </div>
+                <div class="slots-container" id="slotsContainer">
+                    <!-- Time slots will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Appointments Tab -->
+            <div id="appointments" class="tab-content">
+                <div class="section-header">
+                    <h2>Appointment Booking</h2>
+                    <button class="btn btn-primary" onclick="openAppointmentModal()">
+                        <i class="fas fa-plus"></i> Book Appointment
+                    </button>
+                </div>
+                <div class="appointments-container" id="appointmentsContainer">
+                    <!-- Appointments will be dynamically loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Facility Modal -->
+    <div id="facilityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Facility</h3>
+                <span class="close" onclick="closeModal('facilityModal')">&times;</span>
+            </div>
+            <form id="facilityForm">
+                <div class="form-group">
+                    <label for="facilityName">Facility Name</label>
+                    <input type="text" id="facilityName" required>
+                </div>
+                <div class="form-group">
+                    <label for="facilityAddress">Address</label>
+                    <textarea id="facilityAddress" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="facilityPhone">Phone</label>
+                    <input type="tel" id="facilityPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="facilityEmail">Email</label>
+                    <input type="email" id="facilityEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="facilityCapacity">Capacity</label>
+                    <input type="number" id="facilityCapacity" min="1" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('facilityModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Facility</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Provider Modal -->
+    <div id="providerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Provider</h3>
+                <span class="close" onclick="closeModal('providerModal')">&times;</span>
+            </div>
+            <form id="providerForm">
+                <div class="form-group">
+                    <label for="providerName">Provider Name</label>
+                    <input type="text" id="providerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="providerSpecialty">Specialty</label>
+                    <input type="text" id="providerSpecialty" required>
+                </div>
+                <div class="form-group">
+                    <label for="providerEmail">Email</label>
+                    <input type="email" id="providerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="providerPhone">Phone</label>
+                    <input type="tel" id="providerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="providerFacility">Assigned Facility</label>
+                    <select id="providerFacility" required>
+                        <option value="">Select Facility</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('providerModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Provider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Time Slot Modal -->
+    <div id="slotModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Time Slots</h3>
+                <span class="close" onclick="closeModal('slotModal')">&times;</span>
+            </div>
+            <form id="slotForm">
+                <div class="form-group">
+                    <label for="slotFacility">Facility</label>
+                    <select id="slotFacility" required>
+                        <option value="">Select Facility</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="slotProvider">Provider</label>
+                    <select id="slotProvider" required>
+                        <option value="">Select Provider</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="slotDate">Date</label>
+                    <input type="date" id="slotDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="slotStartTime">Start Time</label>
+                    <input type="time" id="slotStartTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="slotEndTime">End Time</label>
+                    <input type="time" id="slotEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="slotDuration">Slot Duration (minutes)</label>
+                    <input type="number" id="slotDuration" min="15" max="120" value="30" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('slotModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Slots</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book Appointment</h3>
+                <span class="close" onclick="closeModal('appointmentModal')">&times;</span>
+            </div>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="appointmentFacility">Facility</label>
+                    <select id="appointmentFacility" required onchange="loadAvailableSlots()">
+                        <option value="">Select Facility</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentProvider">Provider</label>
+                    <select id="appointmentProvider" required onchange="loadAvailableSlots()">
+                        <option value="">Select Provider</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Date</label>
+                    <input type="date" id="appointmentDate" required onchange="loadAvailableSlots()">
+                </div>
+                <div class="form-group">
+                    <label for="appointmentSlot">Available Time Slots</label>
+                    <select id="appointmentSlot" required>
+                        <option value="">Select Time Slot</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientEmail">Patient Email</label>
+                    <input type="email" id="patientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientPhone">Patient Phone</label>
+                    <input type="tel" id="patientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentNotes">Notes</label>
+                    <textarea id="appointmentNotes" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('appointmentModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Book Appointment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="appointment-script.js"></script>
+</body>
+</html>
